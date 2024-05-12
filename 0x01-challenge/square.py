@@ -1,29 +1,47 @@
 #!/usr/bin/python3
+"""
+This script defines a User class with an email attribute.
+"""
 
-class square():
-    
-    width = 0
-    height = 0
 
-    
-    def __init__(self, *args, **kwargs):
-        for key, value in kwargs.items():
-            setattr(self, key, value)
+class User():
+    """
+    This class represents a user with an email attribute.
+    """
 
-    def area_of_my_square(self):
-        """ Area of the square """
-        return self.width * self.height
+    def __init__(self):
+        """
+        Initialize a User instance with an email attribute set to None.
+        """
+        self.__email = None
 
-    def perimeter_of_my_square(self):
-        """ Perimeter of the square """
-        return (self.width * 2) + (self.height * 2)
+    @property
+    def email(self):
+        """
+        Getter method for the email attribute.
+        Returns:
+            str: The email of the user.
+        """
+        return self.__email
 
-    def __str__(self):
-        return "{}/{}".format(self.width, self.height)
+    @email.setter
+    def email(self, value):
+        """
+        Setter method for the email attribute.
+        Args:
+            value (str): The email to set for the user.
+        Raises:
+            TypeError: If the provided value is not a string.
+        """
+        if type(value) is not str:
+            raise TypeError("email must be a string")
+        self.__email = value
+
 
 if __name__ == "__main__":
-
-    s = square(width=12, height=9)
-    print(s)
-    print(s.area_of_my_square())
-    print(s.perimeter_of_my_square())
+    # Creating a User instance
+    u = User()
+    # Setting the email attribute
+    u.email = "john@snow.com"
+    # Printing the email attribute
+    print(u.email)
