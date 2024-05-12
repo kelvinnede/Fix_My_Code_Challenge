@@ -1,47 +1,47 @@
 #!/usr/bin/python3
 """
-This script defines a User class with an email attribute.
+This module defines a Square class that represents a square shape.
 """
 
 
-class User():
+class Square():
     """
-    This class represents a user with an email attribute.
+    Represents a square shape with attributes for width, height, and methods
+    to calculate the area and perimeter.
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
-        Initialize a User instance with an email attribute set to None.
+        Initializes a Square object with optional width and height parameters.
         """
-        self.__email = None
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
-    @property
-    def email(self):
+    def area_of_my_square(self):
         """
-        Getter method for the email attribute.
-        Returns:
-            str: The email of the user.
+        Calculates and returns the area of the square.
+        Formula: width * height
         """
-        return self.__email
+        return self.width * self.height
 
-    @email.setter
-    def email(self, value):
+    def perimeter_of_my_square(self):
         """
-        Setter method for the email attribute.
-        Args:
-            value (str): The email to set for the user.
-        Raises:
-            TypeError: If the provided value is not a string.
+        Calculates and returns the perimeter of the square.
+        Formula: (width * 2) + (height * 2)
         """
-        if type(value) is not str:
-            raise TypeError("email must be a string")
-        self.__email = value
+        return (self.width * 2) + (self.height * 2)
+
+    def __str__(self):
+        """
+        Returns a string representation of the square's dimensions.
+        Example: "12/9" for a square with width 12 and height 9.
+        """
+        return "{}/{}".format(self.width, self.height)
 
 
 if __name__ == "__main__":
-    # Creating a User instance
-    u = User()
-    # Setting the email attribute
-    u.email = "john@snow.com"
-    # Printing the email attribute
-    print(u.email)
+    # Example usage
+    s = Square(width=12, height=9)
+    print(s)  # Output: 12/9
+    print(s.area_of_my_square())  # Output: 108
+    print(s.perimeter_of_my_square())  # Output: 42
